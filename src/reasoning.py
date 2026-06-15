@@ -20,7 +20,7 @@ collection_name = "docs"
 collection = chroma.get_or_create_collection(collection_name)
 
 #RETRIEVAL_K = 20
-FINAL_K = 10
+FINAL_K = 3
 
 
 url = os.getenv("AGENT_URL")
@@ -109,11 +109,12 @@ def fetch_context_unranked(question):
 
 
 def fetch_context(original_question):
-    rewritten_question = rewrite_query(original_question)
+    #rewritten_question = rewrite_query(original_question)
     chunks1 = fetch_context_unranked(original_question)
-    chunks2 = fetch_context_unranked(rewritten_question)
-    chunks = merge_chunks(chunks1, chunks2)
-    return chunks[:FINAL_K]
+    #chunks2 = fetch_context_unranked(rewritten_question)
+    #chunks = merge_chunks(chunks1, chunks2)
+    #return chunks[:FINAL_K]
+    return chunks1[:FINAL_K]
 
 def answer_question(question: str, history: list[dict] = []) -> tuple[str, list]:
     """
