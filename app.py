@@ -1,7 +1,7 @@
 import gradio as gr
 from dotenv import load_dotenv
-
 from src.reasoning import answer_question
+from src.citation import get_citation
 
 load_dotenv(override=True)
 
@@ -34,10 +34,14 @@ def chat(history):
     prior = history[:-1]
 
     answer, context = answer_question(last_message, prior)
-
+    cited_document_name = get_citation(last_message, answer, context)
+    if cited_document_name != "":
+        answer_with_citation = f"{answer}\n\n[Source: {cited_document_name}]"
+    else:
+        answer_with_citation = answer
     history.append({
         "role": "assistant",
-        "content": answer
+        "content": answer_with_citation
     })
 
     return history, format_context(context)
