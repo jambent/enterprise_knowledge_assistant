@@ -1,4 +1,5 @@
 import os
+#import logging
 from dotenv import load_dotenv
 from langchain_ollama import ChatOllama
 from chromadb import PersistentClient
