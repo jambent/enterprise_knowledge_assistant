@@ -4,3 +4,4 @@ __pycache__/
 input_files/
 knowledge_base/
 preprocessed_db/
+app.log*
