@@ -77,11 +77,7 @@ def chat(history):
     logger.info(f"user: {last_message}")
     answer, context = answer_question(last_message, prior)
     cited_document_name = get_citation(last_message, answer, context)
-    #timestamp_now = dt.now().strftime("%Y-%m-%d %H:%M:%S")
-    #timestamp_now = dt.now(timezone.utc).timestamp()
-    
-    #logger.info(f"Assistant answer: {answer}",extra={"timestamp_override": timestamp_now})
-    logger.info(f"Source Document: {cited_document_name}")
+
     if cited_document_name != "":
         answer_with_citation = f"{answer}\n\n[Source: {cited_document_name}]"
     else:
