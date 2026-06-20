@@ -3,13 +3,15 @@ import os
 #import glob
 from langchain_ollama import ChatOllama
 from langchain.agents import create_agent
+from langchain.tools import tool
 from dotenv import load_dotenv
 from src.multi_format_loader import MultiFormatLoader
 
 
 def convert_input_files_to_markdown():
-    load_dotenv()
     """Preprocess input files and convert them to Markdown format."""
+    load_dotenv()
+    
     url = os.getenv("AGENT_URL")
     llm = ChatOllama(base_url=url, model="llama3.2", temperature=0)
     agent = create_agent(
@@ -30,6 +32,7 @@ def convert_input_files_to_markdown():
 
         for file in files:
             input_file_path = os.path.join(root, file)
+            print(f"Processing {file}...")
 
             markdown_output = []
             loader = MultiFormatLoader(input_file_path)
@@ -49,6 +52,7 @@ def convert_input_files_to_markdown():
             output_file_path = os.path.join(output_dir, filename + ".md")
             with open(output_file_path, "w", encoding="utf-8") as f:
                 f.write(final_md)
+            print(f"{file} converted to Markdown")
 
 
 if __name__ == "__main__":

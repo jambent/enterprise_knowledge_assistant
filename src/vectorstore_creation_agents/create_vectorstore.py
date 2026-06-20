@@ -55,8 +55,7 @@ def build_vectorstore(_: str = "") -> str:
         model_name=EMBEDDING_MODEL_NAME
     )
 
-    #DB_NAME = str(Path(DB_NAME))
-    db_path = str(Path(__file__).parent.parent / DB_NAME)
+    db_path = str(Path(__file__).parent.parent.parent / DB_NAME)
 
     if os.path.exists(db_path):
         Chroma(
