@@ -1,0 +1,9 @@
+paths:
+  vector_db: "preprocessed_db"
+
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+
+chunks:
+  top_k_chunks: 3
+  # similarity_threshold: 0.5
