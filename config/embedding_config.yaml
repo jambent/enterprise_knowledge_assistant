@@ -1,0 +1,14 @@
+paths:
+  knowledge_base: "knowledge_base"
+  vector_db: "preprocessed_db"
+
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+
+chunking:
+  chunk_size: 1000
+  chunk_overlap: 200
+
+file_loading:
+  glob_pattern: "**/*.md"
+  encoding: "utf-8"
