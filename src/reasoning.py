@@ -127,4 +127,4 @@ def answer_question(question: str, history: list[dict] = []) -> tuple[str, list]
     return response["messages"][-1].content, chunks
 
 if __name__ == "__main__":
-    print(answer_question("How many days of leave do I get per year?", []))
+    print(answer_question("What is in the test document?", []))
