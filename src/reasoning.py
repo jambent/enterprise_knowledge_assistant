@@ -15,7 +15,8 @@ DB_NAME = str(Path(__file__).parent.parent / "preprocessed_db")
 KNOWLEDGE_BASE_PATH = Path(__file__).parent.parent / "knowledge-base"
 
 embedding_model = "all-MiniLM-L6-v2"
-retriever = retriever_agent(DB_NAME, embedding_model)
+#retriever = retriever_agent(DB_NAME, embedding_model)
+retriever = retriever_agent()
 chroma = PersistentClient(path=DB_NAME)
 collection_name = "docs"
 collection = chroma.get_or_create_collection(collection_name)
@@ -127,4 +128,5 @@ def answer_question(question: str, history: list[dict] = []) -> tuple[str, list]
     return response["messages"][-1].content, chunks
 
 if __name__ == "__main__":
+    #print(answer_question("What is the first stage of the Enterprise Knowledge Assistant Capstone Project?", []))
     print(answer_question("What is in the test document?", []))
