@@ -6,8 +6,8 @@ embedding:
   model_name: "all-MiniLM-L6-v2"
 
 chunking:
-  chunk_size: 1000
-  chunk_overlap: 200
+  chunk_size: 200
+  chunk_overlap: 30
 
 file_loading:
   glob_pattern: "**/*.md"
