@@ -29,8 +29,8 @@ url = os.getenv("AGENT_URL")
 llm = ChatOllama(base_url=url, model="llama3.2", temperature=0)
 
 SYSTEM_PROMPT = """
-You are a knowledgeable, friendly assistant representing the company Apexon.
-You are chatting with a user about Apexon.
+You are a knowledgeable, friendly assistant representing the company Makara.
+You are chatting with a user about Makara.
 Your answer will be evaluated for accuracy, relevance and completeness, so make sure it only answers the question and fully answers it.
 If you don't know the answer, say so.
 For context, here are specific extracts from the Knowledge Base that might be directly relevant to the user's question:
@@ -74,7 +74,7 @@ def make_rag_messages(question, history, chunks):
 def rewrite_query(question, history=[]):
     """Rewrite the user's question to be a more specific question that is more likely to surface relevant content in the Knowledge Base."""
     message = f"""
-You are in a conversation with a user, answering questions about the company Apexon.
+You are in a conversation with a user, answering questions about the company Makara.
 You are about to look up information in a Knowledge Base to answer the user's question.
 
 This is the history of your conversation so far with the user:
@@ -129,4 +129,11 @@ def answer_question(question: str, history: list[dict] = []) -> tuple[str, list]
 
 if __name__ == "__main__":
     #print(answer_question("What is the first stage of the Enterprise Knowledge Assistant Capstone Project?", []))
-    print(answer_question("What is in the test document?", []))
+    #print(answer_question("What is in the test document?", []))
+    from src.citation import get_citation
+    answer, context = answer_question("Hello", [])
+    #cited_document_name = get_citation(user_message, answer, context)
+    cited_document_name = get_citation(answer, context)
+    print(answer)
+    print(context)
+    print(cited_document_name)

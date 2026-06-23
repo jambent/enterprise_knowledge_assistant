@@ -81,7 +81,7 @@ def run_vectorstore_agent() -> str:
         model=llm
     )
 
-    response = vectorstore_agent.invoke({"messages": [{"role": "user", "content": "Build the vector database from the markdown knowledge base"}]})
+    response = vectorstore_agent.invoke({"messages": [{"role": "user", "content": "Build the vector database from the Markdown knowledge base"}]})
     return response["messages"][-1].content
 # url = os.getenv("AGENT_URL")
 # llm = ChatOllama(base_url=url, model="llama3.2", temperature=0)

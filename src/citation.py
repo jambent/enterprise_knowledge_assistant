@@ -5,7 +5,8 @@ from langchain.agents import create_agent
 from langchain_ollama import ChatOllama
 
 
-def get_citation(question, answer, context):
+def get_citation(answer, context):
+#def get_citation(question, answer, context):
     load_dotenv()
 
     url = os.getenv("AGENT_URL")
@@ -21,7 +22,7 @@ def get_citation(question, answer, context):
 
     Your answer must be accurate, and must consist ONLY of the source document name.
     The file extension of the source document name MUST be excluded from the answer.
-    If you don't know the answer, or the answer is not found in the context, respond with 
+    If you don't know the answer, or the answer is not found in the context, YOU MUST respond with 
     the empty string "", only.  
     Do not guess, and do not make up a source document name.
     """

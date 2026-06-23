@@ -69,15 +69,21 @@ def run_chat(user_message, history):
     logger.info(f"user: {user_message}")
 
     answer, context = answer_question(user_message, history)
-    cited_document_name = get_citation(user_message, answer, context)
+    #cited_document_name = get_citation(user_message, answer, context)
+    # cited_document_name = get_citation(answer, context)
 
-    if cited_document_name != "":
-        final_answer = f"{answer}\n\n[Source: {cited_document_name}]"
+    # if cited_document_name != "":
+    #     final_answer = f"{answer}\n\n[Source: {cited_document_name}]"
+    # else:
+    #     final_answer = answer
+
+    cited_document_name = get_citation(answer, context) or ""
+    clean_source = cited_document_name.strip().strip('"')
+    if clean_source:
+        final_answer = f"{answer}\n\n[Source: {clean_source}]"
     else:
         final_answer = answer
-
     logger.info(f"assistant: {final_answer}")
-
     return final_answer, context
 
 
@@ -216,9 +222,9 @@ def run_chat(user_message, history):
 
 
 def main():
-    st.set_page_config(page_title="Apexon Knowledge Assistant", layout="wide")
+    st.set_page_config(page_title="Makara Knowledge Assistant", layout="wide")
 
-    st.title("🏢 Apexon Knowledge Assistant")
+    st.title("Makara Knowledge Assistant")
 
     if "session_id" not in st.session_state:
         import uuid
@@ -236,7 +242,7 @@ def main():
                 st.markdown(msg["content"])
 
     # ✅ Input (fixed bottom)
-    user_input = st.chat_input("Ask anything about Apexon...")
+    user_input = st.chat_input("Ask anything about Makara...")
 
     if user_input:
         # ✅ Add user message
