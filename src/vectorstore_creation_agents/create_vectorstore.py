@@ -13,7 +13,7 @@ from src.load_config import load_config
 
 
 load_dotenv()
-config = load_config("./config/embedding_config.yaml")
+config = load_config("./src/config/embedding_config.yaml")
 
 KB_PATH = config["paths"]["knowledge_base"]
 DB_NAME = config["paths"]["vector_db"]

@@ -2,15 +2,10 @@ import os
 from dotenv import load_dotenv
 from langchain_ollama import ChatOllama
 from langchain.agents import create_agent
-from pathlib import Path
-from src.retrieval import retriever_agent
+from src.assistant_agents.retrieval import retriever_agent
 
 
 load_dotenv(override=True)
-
-DB_NAME = str(Path(__file__).parent.parent / "preprocessed_db")
-KNOWLEDGE_BASE_PATH = Path(__file__).parent.parent / "knowledge-base"
-
 
 url = os.getenv("AGENT_URL")
 llm = ChatOllama(base_url=url, model="llama3.2", temperature=0)

@@ -19,7 +19,7 @@ def _make_serializable(obj):
     return obj
 
 
-config = load_config("./config/retrieval_config.yaml")
+config = load_config("./src/config/retrieval_config.yaml")
 DB_NAME = config["paths"]["vector_db"]
 EMBEDDING_MODEL_NAME = config["embedding"]["model_name"]
 
