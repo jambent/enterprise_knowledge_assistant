@@ -6,3 +6,4 @@ unneeded_files/
 knowledge_base/
 preprocessed_db/
 app.log*
+/vectorstore_artifacts

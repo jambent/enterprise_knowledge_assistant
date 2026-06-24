@@ -56,7 +56,9 @@ def run_chat(user_message, history):
     cited_document_name = get_citation(answer, context) or ""
     clean_source = cited_document_name.strip().strip('"')
     if clean_source:
-        final_answer = f"{answer}\n\n[Source: {clean_source}]"
+        reconstructed_source_path = "input_files/" + "/".join(clean_source.split("/")[1:])
+        #final_answer = f"{answer}\n\n[Source: {clean_source}]"
+        final_answer = f"{answer}\n\n[Source: {reconstructed_source_path}]"
     else:
         final_answer = answer
     logger.info(f"assistant: {final_answer}")

@@ -30,7 +30,6 @@ class MultiFormatLoader(BaseLoader):
             }
         )
 
-
     def _load_txt(self) -> str:
         with open(self.path, "r", encoding="utf-8") as f:
             return f.read()
@@ -47,9 +46,3 @@ class MultiFormatLoader(BaseLoader):
     def _load_docx(self) -> str:
         doc = DocxDocument(self.path)
         return "\n".join(p.text for p in doc.paragraphs)
-
-    
-if __name__ == "__main__":
-    loader = MultiFormatLoader("./input_files/policies/CP01_Enterprise_knowledge_Assistant_Capstone.docx")
-    for doc in loader.lazy_load():
-        print(doc.page_content[:500])
