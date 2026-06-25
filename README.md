@@ -1,4 +1,12 @@
 # Enterprise Knowledge Assistant
+This is an implementation of an assistant that utilises Langchain agents to answer user questions, 
+using a knowledge base formed from input documents that has been converted into a vector store.
+It has a Streamlit front end.
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Vector store creation](#vector-store-creation)
+  - [Streamlit app](#streamlit-app)
+- [Tests](#tests)
 
 ## Installation
 Clone the repo:
@@ -78,4 +86,10 @@ answer questions about for you.
 #### Logs
 A logs directory will be created, containing app.log files.
 These capture the user and assistant interactions, along with the user identity and session id.
+
+### Tests
+The associated test suite can be run by
+```
+python -m pytest
+```
 
