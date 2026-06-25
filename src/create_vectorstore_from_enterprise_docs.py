@@ -9,9 +9,11 @@ def docs_to_markdown_node(state):
     state["docs_to_markdown"] = convert_input_files_to_markdown()
     return state
 
+
 def create_vectorstore_node(state):
     state["create_vectorstore"] = run_vectorstore_agent()
     return state
+
 
 graph = StateGraph(dict)
 
@@ -23,7 +25,3 @@ graph.add_edge("docs_to_markdown", "create_vectorstore")
 
 app = graph.compile()
 app.invoke({})
-
-# for event in app.stream({}):
-#     print(event)
-

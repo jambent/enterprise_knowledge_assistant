@@ -6,4 +6,3 @@ embedding:
 
 chunks:
   top_k_chunks: 3
-  # similarity_threshold: 0.5

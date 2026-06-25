@@ -1,4 +1,5 @@
 import json
+import os
 import logging
 import getpass
 from logging.handlers import RotatingFileHandler
@@ -6,9 +7,8 @@ from datetime import datetime as dt, timezone
 import time
 import streamlit as st
 from dotenv import load_dotenv
-
-from src.reasoning import answer_question
-from src.citation import get_citation
+from src.assistant_agents.reasoning import answer_question
+from src.assistant_agents.citation import get_citation
 
 
 load_dotenv(override=True)
@@ -37,7 +37,7 @@ def setup_logger():
 
     if not logger.handlers:
         handler = RotatingFileHandler(
-            "app.log",
+            "./logs/app.log",
             maxBytes=50000000,
             backupCount=3
         )
@@ -45,7 +45,7 @@ def setup_logger():
         logger.addHandler(handler)
 
     return logger
-
+os.makedirs("logs", exist_ok=True)
 logger = setup_logger()
 
 
@@ -56,7 +56,8 @@ def run_chat(user_message, history):
     cited_document_name = get_citation(answer, context) or ""
     clean_source = cited_document_name.strip().strip('"')
     if clean_source:
-        final_answer = f"{answer}\n\n[Source: {clean_source}]"
+        reconstructed_source_path = "input_files/" + "/".join(clean_source.split("/")[1:])
+        final_answer = f"{answer}\n\n[Source: {reconstructed_source_path}]"
     else:
         final_answer = answer
     logger.info(f"assistant: {final_answer}")
